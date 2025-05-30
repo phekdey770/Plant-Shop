@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLeaf - Premium Plants</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moul&family=Moulpali&family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2913/2913076.png">
+    <style>
+        :root {
+            --primary: #3a7d44;
+            --secondary: #d8f3dc;
+            --accent: #ff9f1c;
+            --text: #2d3436;
+            --light: #ffffff;
+            --dark: #1b263b;
+            --font-normal: 'Kantumruy Pro', sans-serif;
+            --font-header: 'Moul', serif;
+            --font-model: 'Moulpali', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-normal);
+            color: var(--text);
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo h1 {
+            font-family: var(--font-header);
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            color: var(--light);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h2 {
+            font-family: var(--font-model);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            width: fit-content;
+            float: left;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        /* Features Section */
+        .section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-header);
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-model);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Products Section */
+        .products {
+            background-color: var(--secondary);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-model);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #2a5d31;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--light);
+            text-align: center;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-model);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-model);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--font-normal);
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-col h3 {
+            font-family: var(--font-model);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        .language-label {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero h2 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--light);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation Styles */
+        [data-aos="fade-up"] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        [data-aos="fade-up"].aos-animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        [data-aos="fade-left"] {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.6s ease;
+        }
+
+        [data-aos="fade-left"].aos-animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        [data-aos="fade-right"] {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        [data-aos="fade-right"].aos-animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        [data-aos="zoom-in"] {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.6s ease;
+        }
+
+        [data-aos="zoom-in"].aos-animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Khmer Language Styles */
+        body.khmer .section-title h2,
+        body.khmer .feature-card h3,
+        body.khmer .product-info h3,
+        body.khmer .author-info h4,
+        body.khmer .footer-col h3,
+        body.khmer .contact-info h3 {
+            font-family: var(--font-header);
+        }
+
+        body.khmer {
+            font-family: var(--font-normal);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/2913/2913076.png" alt="GreenLeaf Logo">
+            <h1>GreenLeaf</h1>
+        </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="#home" class="en nav-link">Home</a><a href="#home" class="kh nav-link" style="display: none;">ផ្ទះ</a></li>
+                <li><a href="#features" class="en nav-link">Features</a><a href="#features" class="kh nav-link" style="display: none;">លក្ខណៈពិសេស</a></li>
+                <li><a href="#products" class="en nav-link">Products</a><a href="#products" class="kh nav-link" style="display: none;">ផលិតផល</a></li>
+                <li><a href="#testimonials" class="en nav-link">Testimonials</a><a href="#testimonials" class="kh nav-link" style="display: none;">សក្ខីកម្ម</a></li>
+                <li><a href="#contact" class="en nav-link">Contact</a><a href="#contact" class="kh nav-link" style="display: none;">ទាក់ទង</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content" data-aos="fade-right">
+            <h2 class="en">Bring Nature Into Your Home</h2>
+            <h2 class="kh" style="display: none;">នាំធម្មជាតិចូលក្នុងផ្ទះរបស់អ្នក</h2>
+            <p class="en">Discover our premium collection of indoor and outdoor plants that will transform your living space into a green paradise.</p>
+            <p class="kh" style="display: none;">ស្វែងរកប្រភេទដើមឈើខាងក្នុង និងខាងក្រៅដ៏ពិសេសរបស់យើង ដែលនឹងធ្វើឱ្យកន្លែងរស់នៅរបស់អ្នកក្លាយជាឋានសួគ៌ពណ៌បៃតង។</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn en">Shop Now</a>
+                <a href="#products" class="btn kh" style="display: none;">ទិញឥវ៉ាន់</a>
+                <a href="#contact" class="btn btn-outline en">Contact Us</a>
+                <a href="#contact" class="btn btn-outline kh" style="display: none;">ទាក់ទងពួកយើង</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="section-title" data-aos="fade-up">
+            <h2 class="en">Why Choose Us</h2>
+            <h2 class="kh" style="display: none;">ហេតុអ្វីគួរជ្រើសរើសយើង</h2>
+            <p class="en">We provide the best quality plants with exceptional care and service</p>
+            <p class="kh" style="display: none;">យើងផ្តល់ដើមឈើដែលមានគុណភាពល្អបំផុតជាមួយនឹងការថែទាំ និងសេវាកម្មដ៏ល្អវិសេស</p>
+        </div>
+        <div class="features">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3 class="en">Premium Quality</h3>
+                <h3 class="kh" style="display: none;">គុណភាពខ្ពស់</h3>
+                <p class="en">All our plants are carefully selected and nurtured to ensure the highest quality for your home.</p>
+                <p class="kh" style="display: none;">ដើមឈើទាំងអស់របស់យើងត្រូវបានជ្រើសរើស និងចិញ្ចឹមដោយប្រុងប្រយ័ត្នដើម្បីធានាគុណភាពខ្ពស់បំផុតសម្រាប់ផ្ទះរបស់អ្នក។</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="en">Fast Delivery</h3>
+                <h3 class="kh" style="display: none;">ការដឹកជញ្ជូនរហ័ស</h3>
+                <p class="en">We deliver your plants quickly and safely to your doorstep with our specialized delivery service.</p>
+                <p class="kh" style="display: none;">យើងដឹកជញ្ជូនដើមឈើរបស់អ្នកយ៉ាងរហ័ស និងសុវត្ថិភាពទៅដល់ផ្ទះរបស់អ្នកដោយសេវាកម្មដឹកជញ្ជូនពិសេសរបស់យើង។</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="en">Expert Support</h3>
+                <h3 class="kh" style="display: none;">ការគាំទ្រពីអ្នកជំនាញ</h3>
+                <p class="en">Our plant experts are available 24/7 to help you with any questions or plant care advice.</p>
+                <p class="kh" style="display: none;">អ្នកជំនាញរុក្ខជាតិរបស់យើងអាចរកបាន 24/7 ដើម្បីជួយអ្នកជាមួយនឹងសំណួរ ឬដំបូន្មានអំពីការថែទាំដើមឈើ។</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section products" id="products">
+        <div class="section-title" data-aos="fade-up">
+            <h2 class="en">Our Products</h2>
+            <h2 class="kh" style="display: none;">ផលិតផលរបស់យើង</h2>
+            <p class="en">Explore our wide variety of beautiful plants for every space and style</p>
+            <p class="kh" style="display: none;">ស្វែងរកប្រភេទដើមឈើស្រស់ស្អាតច្រើនប្រភេទរបស់យើងសម្រាប់គ្រប់ទីកន្លែង និងរចនាប័ទ្ម</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Monstera Plant">
+                </div>
+                <div class="product-info">
+                    <h3 class="en">Monstera Deliciosa</h3>
+                    <h3 class="kh" style="display: none;">ដើមម៉ុងស្តេរ៉ា</h3>
+                    <p class="en">Large tropical plant with unique split leaves</p>
+                    <p class="kh" style="display: none;">ដើមឈើត្រូពិកធំដុះមានស្លឹកបែកពិសេស</p>
+                    <div class="product-price">
+                        <span class="price">$45.99</span>
+                        <button class="add-to-cart en">Add to Cart</button>
+                        <button class="add-to-cart kh" style="display: none;">បញ្ចូលទៅកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1598880940080-ff9a29891b85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Snake Plant">
+                </div>
+                <div class="product-info">
+                    <h3 class="en">Snake Plant</h3>
+                    <h3 class="kh" style="display: none;">ដើមស្នេហ៍</h3>
+                    <p class="en">Low maintenance plant that purifies the air</p>
+                    <p class="kh" style="display: none;">ដើមឈើមិនចាំបាច់ថែទាំច្រើនដែលសំអាតខ្យល់</p>
+                    <div class="product-price">
+                        <span class="price">$29.99</span>
+                        <button class="add-to-cart en">Add to Cart</button>
+                        <button class="add-to-cart kh" style="display: none;">បញ្ចូលទៅកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1591958915554-4a2c2f4a7b5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Fiddle Leaf Fig">
+                </div>
+                <div class="product-info">
+                    <h3 class="en">Fiddle Leaf Fig</h3>
+                    <h3 class="kh" style="display: none;">ដើមហ្វីហ្គ័រស្លឹកវិចិត្រ</h3>
+                    <p class="en">Trendy statement plant with large violin-shaped leaves</p>
+                    <p class="kh" style="display: none;">ដើមឈើទាន់សម័យដែលមានស្លឹកធំៗរាងដូចវីយូឡុង</p>
+                    <div class="product-price">
+                        <span class="price">$59.99</span>
+                        <button class="add-to-cart en">Add to Cart</button>
+                        <button class="add-to-cart kh" style="display: none;">បញ្ចូលទៅកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1598888001361-1a33b82c4859?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Peace Lily">
+                </div>
+                <div class="product-info">
+                    <h3 class="en">Peace Lily</h3>
+                    <h3 class="kh" style="display: none;">ដើមលីសន្តិភាព</h3>
+                    <p class="en">Beautiful flowering plant that thrives in low light</p>
+                    <p class="kh" style="display: none;">ដើមឈើដុះផ្កាស្រស់ស្អាតដែលអាចរស់នៅក្នុងពន្លឺតិច</p>
+                    <div class="product-price">
+                        <span class="price">$34.99</span>
+                        <button class="add-to-cart en">Add to Cart</button>
+                        <button class="add-to-cart kh" style="display: none;">បញ្ចូលទៅកន្ត្រក</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="section-title" data-aos="fade-up">
+            <h2 class="en">What Our Customers Say</h2>
+            <h2 class="kh" style="display: none;">អ្វីដែលអតិថិជនរបស់យើងនិយាយ</h2>
+            <p class="en">Hear from our happy plant parents about their experience with GreenLeaf</p>
+            <p class="kh" style="display: none;">ស្តាប់ពីអ្នកដែលបានទិញដើមឈើរបស់យើងអំពីបទពិសោធន៍របស់ពួកគេជាមួយ GreenLeaf</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <p class="testimonial-text en">"I've bought several plants from GreenLeaf and they're all thriving! The quality is exceptional and their customer service is top-notch."</p>
+                <p class="testimonial-text kh" style="display: none;">"ខ្ញុំបានទិញដើមឈើជាច្រើនពី GreenLeaf ហើយវាលូតលាស់ល្អណាស់! គុណភាពគឺពិសេសហើយសេវាកម្មអតិថិជនរបស់ពួកគេគឺល្អឥតខ្ចោះ។"</p>
+                <div class="testimonial-author">
+                    <div class="author-img">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J.">
+                    </div>
+                    <div class="author-info">
+                        <h4>Sarah J.</h4>
+                        <p class="en">Plant Enthusiast</p>
+                        <p class="kh" style="display: none;">អ្នកចូលចិត្តដើមឈើ</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <p class="testimonial-text en">"The delivery was super fast and the plant arrived in perfect condition. I'll definitely be ordering more!"</p>
+                <p class="testimonial-text kh" style="display: none;">"ការដឹកជញ្ជូនគឺលឿនណាស់ហើយដើមឈើមកដល់ក្នុងស្ថានភាពល្អឥតខ្ចោះ។ ខ្ញុំពិតជានឹងបញ្ជាទិញបន្ថែមទៀត!"</p>
+                <div class="testimonial-author">
+                    <div class="author-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+                    </div>
+                    <div class="author-info">
+                        <h4>Michael T.</h4>
+                        <p class="en">First-time Buyer</p>
+                        <p class="kh" style="display: none;">អ្នកទិញដំបូង</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                <p class="testimonial-text en">"Their plant care advice saved my dying fiddle leaf fig! So grateful for their expertise and support."</p>
+                <p class="testimonial-text kh" style="display: none;">"ដំបូន្មានអំពីការថែទាំដើមឈើរបស់ពួកគេបានជួយសង្គ្រោះដើមហ្វីហ្គ័រស្លឹកវិចិត្រដែលកំពុងងាប់របស់ខ្ញុំ! ខ្ញុំពិតជាមានអំណរចំពោះជំនាញ និងការគាំទ្ររបស់ពួកគេ។"</p>
+                <div class="testimonial-author">
+                    <div class="author-img">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emma L.">
+                    </div>
+                    <div class="author-info">
+                        <h4>Emma L.</h4>
+                        <p class="en">Plant Rescuer</p>
+                        <p class="kh" style="display: none;">អ្នកសង្គ្រោះដើមឈើ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-title" data-aos="fade-up">
+            <h2 class="en">Contact Us</h2>
+            <h2 class="kh" style="display: none;">ទាក់ទងពួកយើង</h2>
+            <p class="en">Have questions or want to place an order? Get in touch with our team</p>
+            <p class="kh" style="display: none;">មានសំណួរ ឬចង់ធ្វើការបញ្ជាទិញ? ទាក់ទងជាមួយក្រុមការងាររបស់យើង</p>
+        </div>
+        <div class="contact">
+            <div class="contact-info" data-aos="fade-right">
+                <h3 class="en">Get In Touch</h3>
+                <h3 class="kh" style="display: none;">ទាក់ទង</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p class="en">123 Plant Street, Phnom Penh, Cambodia</p>
+                            <p class="kh" style="display: none;">១២៣ ផ្លូវដើមឈើ, ភ្នំពេញ, កម្ពុជា</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <p>+855 12 345 678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p>info@greenleaf.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="contact-form" data-aos="fade-left">
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="en">Your Name</label>
+                        <label for="name" class="kh" style="display: none;">ឈ្មោះរបស់អ្នក</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="en">Email Address</label>
+                        <label for="email" class="kh" style="display: none;">អាសយដ្ឋានអ៊ីមែល</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="en">Your Message</label>
+                        <label for="message" class="kh" style="display: none;">សាររបស់អ្នក</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn en">Send Message</button>
+                    <button type="submit" class="btn kh" style="display: none;">ផ្ញើសារ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3 class="en">GreenLeaf</h3>
+                <h3 class="kh" style="display: none;">GreenLeaf</h3>
+                <p class="en">Bringing nature's beauty into your home with premium quality plants and exceptional service.</p>
+                <p class="kh" style="display: none;">នាំយកភាពស្រស់ស្អាតរបស់ធម្មជាតិចូលក្នុងផ្ទះរបស់អ្នកជាមួយនឹងដើមឈើដែលមានគុណភាពខ្ពស់ និងសេវាកម្មដ៏ល្អវិសេស។</p>
+            </div>
+            <div class="footer-col">
+                <h3 class="en">Quick Links</h3>
+                <h3 class="kh" style="display: none;">តំណភ្ជាប់រហ័ស</h3>
+                <ul>
+                    <li><a href="#home" class="en">Home</a><a href="#home" class="kh" style="display: none;">ផ្ទះ</a></li>
+                    <li><a href="#features" class="en">Features</a><a href="#features" class="kh" style="display: none;">លក្ខណៈពិសេស</a></li>
+                    <li><a href="#products" class="en">Products</a><a href="#products" class="kh" style="display: none;">ផលិតផល</a></li>
+                    <li><a href="#testimonials" class="en">Testimonials</a><a href="#testimonials" class="kh" style="display: none;">សក្ខីកម្ម</a></li>
+                    <li><a href="#contact" class="en">Contact</a><a href="#contact" class="kh" style="display: none;">ទាក់ទង</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="en">Support</h3>
+                <h3 class="kh" style="display: none;">ការគាំទ្រ</h3>
+                <ul>
+                    <li><a href="#" class="en">FAQ</a><a href="#" class="kh" style="display: none;">សំណួរដែលសួរញឹកញាប់</a></li>
+                    <li><a href="#" class="en">Shipping Policy</a><a href="#" class="kh" style="display: none;">គោលការណ៍ដឹកជញ្ជូន</a></li>
+                    <li><a href="#" class="en">Return Policy</a><a href="#" class="kh" style="display: none;">គោលការណ៍ត្រឡប់</a></li>
+                    <li><a href="#" class="en">Privacy Policy</a><a href="#" class="kh" style="display: none;">គោលការណ៍ឯកជនភាព</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="en">2025 - All rights reserved. Provide by Mr. Phekdey PHORN</p>
+            <p class="kh" style="display: none;">២០២៥ - រក្សារ​សិទ្ធិ​គ្រប់​យ៉ាង ដោយលោក ផន ភក្ដី។</p>
+        </div>
+    </footer>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <span class="language-label en">English</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="language-toggle">
+            <span class="slider"></span>
+        </label>
+        <span class="language-label kh" style="display: none;">ភាសាខ្មែរ</span>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Language toggle functionality
+        const languageToggle = document.getElementById('language-toggle');
+        const englishElements = document.querySelectorAll('.en');
+        const khmerElements = document.querySelectorAll('.kh');
+
+        languageToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // Switch to Khmer
+                document.body.classList.add('khmer');
+                englishElements.forEach(el => el.style.display = 'none');
+                khmerElements.forEach(el => el.style.display = 'block');
+            } else {
+                // Switch to English
+                document.body.classList.remove('khmer');
+                englishElements.forEach(el => el.style.display = 'block');
+                khmerElements.forEach(el => el.style.display = 'none');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
